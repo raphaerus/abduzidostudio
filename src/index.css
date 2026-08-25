@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #0684F2;
+  --color-brand-turquoise: #03D9D9;
+  --color-brand-light-blue: #70B3FF;
+  
+  --color-brand-bg-orbital: #EAF8FF;
+  --color-brand-bg-white: #F8FCFF;
+  --color-brand-bg-dark: #071B33;
+  --color-brand-bg-deep: #0B2545;
+  
+  --color-brand-yellow: #FFCC70;
+  --color-brand-gold: #B3822B;
+  
+  --color-brand-text-dark: #101828;
+  --color-brand-text-sec: #475467;
+  --color-brand-text-light: #F8FCFF;
+
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-alegreya: "Alegreya", serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-montserrat);
+    background-color: var(--color-brand-bg-white);
+    color: var(--color-brand-text-dark);
+  }
+}
+
+/* Custom Glassmorphism styles */
+.glass-header {
+  background: rgba(234, 248, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(6, 132, 242, 0.1);
+}
+
+.glass-card {
+  background: rgba(248, 252, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(112, 179, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(6, 132, 242, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(3, 217, 217, 0.6);
+  box-shadow: 0 12px 40px 0 rgba(3, 217, 217, 0.12);
+}
+
+.glass-card-dark {
+  background: rgba(11, 37, 69, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(112, 179, 255, 0.15);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-dark:hover {
+  transform: translateY(-6px);
+  border-color: rgba(3, 217, 217, 0.5);
+  box-shadow: 0 12px 40px 0 rgba(3, 217, 217, 0.2);
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Star background overlay */
+.stars-bg {
+  background-image: 
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+}
