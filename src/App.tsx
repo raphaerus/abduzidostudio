@@ -247,7 +247,7 @@ export default function App() {
             </div>
 
             {/* Main Title */}
-            <h1 className="text-4xl md:text-[60px] leading-[1.1] font-black tracking-tight text-brand-text-dark mb-6">
+            <h1 className="text-fluid-hero leading-[1.1] font-black tracking-tight text-brand-text-dark mb-6">
               Sua marca fora da <br className="hidden md:inline"/>
               <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-[#00bebe]">
                 órbita do comum
@@ -259,7 +259,7 @@ export default function App() {
             </h1>
 
             {/* Subtext */}
-            <p className="text-sm md:text-[16px] leading-relaxed text-brand-text-sec max-w-xl mb-10 font-medium">
+            <p className="text-fluid-body leading-fluid-relaxed text-brand-text-sec max-w-prose mb-10 font-medium">
               Criamos sites institucionais, landing pages de alta conversão e estruturas web modernas para marcas que querem se destacar com velocidade, clareza e direção técnica.
             </p>
 
@@ -286,15 +286,15 @@ export default function App() {
             <div className="mt-12 flex flex-wrap justify-center md:justify-start gap-6 opacity-80">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brand-turquoise" />
-                <span className="text-xs font-semibold text-brand-text-sec">Design Exclusivo</span>
+                <span className="text-sm font-semibold text-brand-text-sec">Design Exclusivo</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brand-turquoise" />
-                <span className="text-xs font-semibold text-brand-text-sec">Código Otimizado</span>
+                <span className="text-sm font-semibold text-brand-text-sec">Código Otimizado</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brand-turquoise" />
-                <span className="text-xs font-semibold text-brand-text-sec">Suporte Dedicado</span>
+                <span className="text-sm font-semibold text-brand-text-sec">Suporte Dedicado</span>
               </div>
             </div>
           </div>
@@ -344,10 +344,10 @@ export default function App() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-blue bg-brand-blue/5 px-4.5 py-1.5 rounded-full">
               Como ajudamos você
             </span>
-            <h2 className="text-3xl md:text-4xl font-black text-brand-text-dark tracking-tight mt-4 mb-4">
+            <h2 className="text-fluid-h2 font-black text-brand-text-dark tracking-tight mt-4 mb-4">
               Como ajudamos sua marca a decolar
             </h2>
-            <p className="text-sm md:text-[15px] text-brand-text-sec leading-relaxed">
+            <p className="text-fluid-body text-brand-text-sec leading-fluid-relaxed max-w-2xl mx-auto">
               Do primeiro rascunho visual ao lançamento operacional na nuvem, criamos soluções inteligentes e elegantes para sua presença digital sair definitivamente do improviso.
             </p>
           </div>
@@ -374,12 +374,12 @@ export default function App() {
                   </span>
                   
                   {/* Title */}
-                  <h3 className="text-lg font-bold text-brand-text-dark mt-4 mb-3">
+                  <h3 className="text-fluid-h3 font-bold text-brand-text-dark mt-4 mb-3">
                     {service.title}
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-[13px] leading-relaxed text-brand-text-sec">
+                  <p className="text-fluid-body leading-fluid-relaxed text-brand-text-sec">
                     {service.description}
                   </p>
                 </div>
@@ -405,7 +405,7 @@ export default function App() {
           {/* Decorative quote icon */}
           <div className="font-serif text-6xl text-brand-blue/15 leading-none h-6 select-none">“</div>
           
-          <h3 className="font-alegreya italic text-2xl md:text-[34px] leading-relaxed text-brand-text-dark max-w-3xl mx-auto my-6 font-medium">
+          <h3 className="font-alegreya italic text-fluid-h2 leading-relaxed text-brand-text-dark max-w-3xl mx-auto my-6 font-medium">
             A internet está cheia de sites esquecíveis. A gente acredita em projetos com <span className="text-brand-blue font-bold not-italic">intenção</span>, beleza e <span className="text-brand-blue font-bold not-italic">direção</span>. Cada marca tem uma órbita própria. Nosso trabalho é ajudar você a encontrar a sua.
           </h3>
           
@@ -433,10 +433,10 @@ export default function App() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-turquoise bg-brand-turquoise/10 px-4.5 py-1.5 rounded-full border border-brand-turquoise/20">
               Passo a Passo
             </span>
-            <h2 className="text-3xl md:text-4xl font-black text-brand-text-light tracking-tight mt-4 mb-4">
+            <h2 className="text-fluid-h2 font-black text-brand-text-light tracking-tight mt-4 mb-4">
               Da ideia ao lançamento, sem se perder no espaço
             </h2>
-            <p className="text-sm md:text-[15px] text-slate-300 leading-relaxed max-w-xl mx-auto">
+            <p className="text-fluid-body text-slate-300 leading-fluid-relaxed max-w-2xl mx-auto">
               Cada projeto segue uma rota perfeitamente traçada, garantindo organização, transparência e controle técnico em todas as etapas de voo.
             </p>
           </div>
@@ -461,12 +461,12 @@ export default function App() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg font-bold text-white mb-3 tracking-tight">
+                  <h3 className="text-fluid-h3 font-bold text-white mb-3 tracking-tight">
                     {step.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs md:text-[13px] leading-relaxed text-slate-400 group-hover:text-slate-300 transition-colors">
+                  <p className="text-fluid-body leading-fluid-relaxed text-slate-300 group-hover:text-white transition-colors">
                     {step.description}
                   </p>
                 </div>
@@ -505,10 +505,10 @@ export default function App() {
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-blue bg-brand-blue/5 px-4.5 py-1.5 rounded-full">
                 Estação de Cases
               </span>
-              <h2 className="text-3xl md:text-4xl font-black text-brand-text-dark tracking-tight mt-4 mb-4">
+              <h2 className="text-fluid-h2 font-black text-brand-text-dark tracking-tight mt-4 mb-4">
                 Missões que já passaram pela nossa estação
               </h2>
-              <p className="text-sm text-brand-text-sec leading-relaxed">
+              <p className="text-fluid-body text-brand-text-sec leading-fluid-relaxed max-w-2xl">
                 Conheça alguns dos projetos e estruturas web reais desenvolvidas pelo studio. Clique em qualquer case para abrir o álbum de telas com zoom interativo.
               </p>
             </div>
@@ -593,12 +593,12 @@ export default function App() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg font-bold text-brand-text-dark mb-2 tracking-tight">
+                  <h3 className="text-fluid-h3 font-bold text-brand-text-dark mb-2 tracking-tight">
                     {project.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-[13px] leading-relaxed text-brand-text-sec mb-4">
+                  <p className="text-fluid-body leading-fluid-relaxed text-brand-text-sec mb-4">
                     {project.description}
                   </p>
 
@@ -696,11 +696,11 @@ export default function App() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-blue bg-brand-blue/5 px-4.5 py-1.5 rounded-full">
               Tripulação
             </span>
-            <h2 className="text-3xl md:text-4xl font-black text-brand-text-dark tracking-tight mt-4 mb-6">
+            <h2 className="text-fluid-h2 font-black text-brand-text-dark tracking-tight mt-4 mb-6">
               Um studio pequeno com visão de universo
             </h2>
             
-            <div className="space-y-6 text-sm text-brand-text-sec leading-relaxed">
+            <div className="space-y-6 text-fluid-body text-brand-text-sec leading-fluid-relaxed max-w-prose">
               <p>
                 O <strong>Abduzido Studio</strong> nasceu da fusão apaixonada entre design de alta qualidade, desenvolvimento web focado em desempenho e criatividade prática orientada a resultados comerciais.
               </p>
@@ -739,10 +739,10 @@ export default function App() {
             <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-brand-blue">
               Decolagem Imediata
             </span>
-            <h3 className="text-2xl md:text-3xl font-black text-brand-text-dark tracking-tight mt-2 mb-4">
+            <h3 className="text-fluid-h2 font-black text-brand-text-dark tracking-tight mt-2 mb-4">
               Qual é a próxima missão da sua marca?
             </h3>
-            <p className="text-xs md:text-sm text-brand-text-sec mb-8">
+            <p className="text-fluid-body text-brand-text-sec leading-fluid-relaxed max-w-2xl mb-8">
               Selecione o serviço que seu negócio precisa no momento e clique no botão abaixo. A IA preparará uma mensagem de apresentação perfeita para o nosso WhatsApp.
             </p>
 
@@ -801,11 +801,11 @@ export default function App() {
             <Rocket className="w-7 h-7 text-white" />
           </div>
 
-          <h2 className="text-3xl md:text-5xl font-black text-brand-text-light tracking-tight max-w-2xl mb-6 leading-tight">
+          <h2 className="text-fluid-hero font-black text-brand-text-light tracking-tight max-w-3xl mb-6 leading-tight">
             Pronto para tirar sua marca do piloto automático?
           </h2>
           
-          <p className="text-sm md:text-[15px] leading-relaxed text-slate-300 max-w-xl mb-12">
+          <p className="text-fluid-body leading-fluid-relaxed text-slate-300 max-w-2xl mb-12">
             Compartilhe sua ideia, seu problema técnico ou seu novo projeto de design conosco. Nós ajudamos a planejar, projetar e subir uma presença digital impecável.
           </p>
 
