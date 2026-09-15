@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dossiê Estratégico & Briefing de Campanha — Abduzido Studio</title>
+  
+  <!-- Google Fonts: Montserrat & Alegreya -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Montserrat:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       CSS VARIABLES & THEME TOKENS (ABDUZIDO STUDIO DESIGN SYSTEM)
+       ========================================================================== */
+    :root {
+      /* Brand Primary Colors */
+      --color-brand-blue: #0684F2;
+      --color-brand-blue-hover: #0570cf;
+      --color-brand-turquoise: #03D9D9;
+      --color-brand-turquoise-glow: rgba(3, 217, 217, 0.45);
+      --color-brand-light-blue: #70B3FF;
+      
+      /* Backgrounds */
+      --color-bg-orbital: #EAF8FF;
+      --color-bg-white: #F8FCFF;
+      --color-bg-card: rgba(255, 255, 255, 0.85);
+      --color-bg-dark: #071B33;
+      --color-bg-deep: #0B2545;
+      --color-bg-deep-card: rgba(11, 37, 69, 0.75);
+
+      /* Accents */
+      --color-brand-yellow: #FFCC70;
+      --color-brand-gold: #B3822B;
+
+      /* Typography Colors */
+      --color-text-dark: #101828;
+      --color-text-sec: #475467;
+      --color-text-muted: #667085;
+      --color-text-light: #F8FCFF;
+      --color-text-light-sec: #94A3B8;
+
+      /* Borders & Shadows */
+      --border-subtle: rgba(6, 132, 242, 0.15);
+      --border-card: rgba(112, 179, 255, 0.25);
+      --border-glow: rgba(3, 217, 217, 0.5);
+      --shadow-sm: 0 4px 12px rgba(6, 132, 242, 0.05);
+      --shadow-md: 0 12px 32px rgba(6, 132, 242, 0.08);
+      --shadow-glow: 0 0 25px rgba(3, 217, 217, 0.3);
+
+      /* 8px Spacing Grid */
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 32px;
+      --space-5: 40px;
+      --space-6: 48px;
+      --space-8: 64px;
+
+      /* Fonts */
+      --font-main: 'Montserrat', sans-serif;
+      --font-editorial: 'Alegreya', serif;
+    }
+
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: var(--font-main);
+      background-color: var(--color-bg-dark);
+      color: var(--color-text-dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 0%, #0c2b52 0%, var(--color-bg-dark) 45%, #040e1c 100%);
+      color: var(--color-text-light);
+      position: relative;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       BACKGROUND COSMIC STARS & GRID EFFECT
+       ========================================================================== */
+    .cosmic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background-image: 
+        radial-gradient(1.5px 1.5px at 40px 60px, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1.5px 1.5px at 150px 220px, rgba(3, 217, 217, 0.8), transparent),
+        radial-gradient(2px 2px at 280px 110px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 420px 380px, rgba(112, 179, 255, 0.9), transparent),
+        radial-gradient(2px 2px at 560px 200px, rgba(255, 204, 112, 0.8), transparent),
+        radial-gradient(1.5px 1.5px at 700px 450px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(2px 2px at 850px 90px, rgba(3, 217, 217, 0.8), transparent),
+        radial-gradient(1.5px 1.5px at 980px 320px, rgba(255, 255, 255, 0.85), transparent);
+      background-size: 650px 650px;
+      opacity: 0.65;
+    }
+
+    .cosmic-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: 
+        linear-gradient(to right, rgba(6, 132, 242, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(6, 132, 242, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .ambient-glow {
+      position: fixed;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(6, 132, 242, 0.25) 0%, rgba(3, 217, 217, 0.12) 40%, transparent 70%);
+      filter: blur(80px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ==========================================================================
+       ACCESSIBILITY: PREFERS-REDUCED-MOTION
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.9; }
+    }
+
+    .animate-float {
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .animate-pulse-glow {
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    /* ==========================================================================
+       CONTAINERS & LAYOUT
+       ========================================================================== */
+    .app-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-3);
+    }
+
+    /* Glassmorphism Styles */
+    .glass-panel {
+      background: var(--color-bg-deep-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-panel:hover {
+      border-color: var(--border-glow);
+    }
+
+    .glass-light {
+      background: rgba(248, 252, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      color: var(--color-text-dark);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ==========================================================================
+       HEADER & LOGO BAR
+       ========================================================================== */
+    header.site-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-3);
+      margin-bottom: var(--space-4);
+      border-radius: 24px;
+      background: rgba(11, 37, 69, 0.85);
+      border: 1px solid rgba(112, 179, 255, 0.25);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand-id {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      text-decoration: none;
+      color: var(--color-text-light);
+    }
+
+    .brand-logo-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--color-brand-blue) 0%, var(--color-brand-turquoise) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px var(--color-brand-turquoise-glow);
+    }
+
+    .brand-title-group h1 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .brand-title-group span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--color-brand-turquoise);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 10px 18px;
+      border-radius: 9999px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--color-brand-blue);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(6, 132, 242, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-brand-blue-hover);
+      box-shadow: 0 6px 20px var(--color-brand-turquoise-glow);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(112, 179, 255, 0.3);
+      color: var(--color-text-light);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--color-brand-turquoise);
+      color: var(--color-brand-turquoise);
+      transform: translateY(-2px);
+    }
+
+    .btn-copy {
+      background: rgba(6, 132, 242, 0.15);
+      border: 1px solid rgba(6, 132, 242, 0.35);
+      color: var(--color-brand-light-blue);
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+
+    .btn-copy:hover {
+      background: var(--color-brand-blue);
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       HERO BANNER (ORBITAL CLEAN CONCEPT)
+       ========================================================================== */
+    .hero-banner {
+      position: relative;
+      padding: var(--space-5) var(--space-4);
+      margin-bottom: var(--space-4);
+      overflow: hidden;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(6, 132, 242, 0.15);
+      border: 1px solid rgba(3, 217, 217, 0.4);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-brand-turquoise);
+      margin-bottom: var(--space-2);
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-2);
+      color: #ffffff;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(90deg, #FFFFFF 0%, var(--color-brand-light-blue) 45%, var(--color-brand-turquoise) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.0625rem;
+      color: var(--color-text-light-sec);
+      max-width: 820px;
+      line-height: 1.65;
+      margin-bottom: var(--space-4);
+    }
+
+    .hero-badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+    }
+
+    .hero-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(112, 179, 255, 0.2);
+      border-radius: 9999px;
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #E2E8F0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-pill span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-brand-turquoise);
+      box-shadow: 0 0 8px var(--color-brand-turquoise);
+    }
+
+    /* ==========================================================================
+       NAVIGATION TABS
+       ========================================================================== */
+    .tab-nav-wrapper {
+      position: sticky;
+      top: 16px;
+      z-index: 40;
+      margin-bottom: var(--space-4);
+    }
+
+    .tab-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px;
+      background: rgba(7, 27, 51, 0.88);
+      border: 1px solid rgba(112, 179, 255, 0.25);
+      border-radius: 16px;
+      backdrop-filter: blur(16px);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tab-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      flex: 1;
+      white-space: nowrap;
+      background: transparent;
+      border: none;
+      color: var(--color-text-light-sec);
+      font-family: var(--font-main);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--color-brand-blue) 0%, #038cf5 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 15px rgba(6, 132, 242, 0.35);
+    }
+
+    /* Tab Content visibility */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.35s ease forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       SECTION HEADINGS & LAYOUT
+       ========================================================================== */
+    .section-header {
+      margin-bottom: var(--space-3);
+    }
+
+    .section-eyebrow {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-brand-turquoise);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+
+    .section-subtitle {
+      font-size: 0.9375rem;
+      color: var(--color-text-light-sec);
+      margin-top: 4px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+
+    /* Card styling */
+    .card {
+      padding: var(--space-3);
+      border-radius: 16px;
+      position: relative;
+    }
+
+    .card-title {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: var(--space-1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-text {
+      font-size: 0.875rem;
+      color: var(--color-text-light-sec);
+      line-height: 1.6;
+    }
+
+    /* Highlight badge */
+    .tag {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      display: inline-block;
+    }
+
+    .tag-blue { background: rgba(6, 132, 242, 0.18); color: var(--color-brand-light-blue); border: 1px solid rgba(6, 132, 242, 0.3); }
+    .tag-turquoise { background: rgba(3, 217, 217, 0.15); color: var(--color-brand-turquoise); border: 1px solid rgba(3, 217, 217, 0.35); }
+    .tag-yellow { background: rgba(255, 204, 112, 0.15); color: var(--color-brand-yellow); border: 1px solid rgba(255, 204, 112, 0.35); }
+
+    /* ==========================================================================
+       PALETA DE CORES INTERATIVA
+       ========================================================================== */
+    .color-swatch-card {
+      background: var(--color-bg-deep-card);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .color-swatch-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-brand-turquoise);
+    }
+
+    .color-sample {
+      height: 70px;
+      width: 100%;
+      position: relative;
+    }
+
+    .color-details {
+      padding: var(--space-2);
+    }
+
+    .color-name {
+      font-weight: 800;
+      font-size: 0.875rem;
+      color: #FFFFFF;
+      margin-bottom: 2px;
+    }
+
+    .color-hex {
+      font-family: monospace;
+      font-size: 0.8125rem;
+      color: var(--color-brand-turquoise);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .color-use {
+      font-size: 0.75rem;
+      color: var(--color-text-light-sec);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       POST & COPY CARDS (INSTAGRAM & GOOGLE MEU NEGÓCIO)
+       ========================================================================== */
+    .post-card {
+      background: rgba(11, 37, 69, 0.85);
+      border: 1px solid rgba(112, 179, 255, 0.25);
+      border-radius: 18px;
+      padding: var(--space-3);
+      position: relative;
+      margin-bottom: var(--space-3);
+    }
+
+    .post-card-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: var(--space-2);
+      border-bottom: 1px solid rgba(112, 179, 255, 0.12);
+      margin-bottom: var(--space-2);
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .post-title-text {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-top: 4px;
+    }
+
+    .creative-suggestion {
+      background: rgba(6, 132, 242, 0.1);
+      border-left: 3px solid var(--color-brand-turquoise);
+      padding: 10px 14px;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.8125rem;
+      color: #E2E8F0;
+      margin-bottom: var(--space-2);
+    }
+
+    .creative-suggestion strong {
+      color: var(--color-brand-turquoise);
+    }
+
+    .copy-box {
+      background: rgba(4, 14, 28, 0.95);
+      border: 1px solid rgba(112, 179, 255, 0.18);
+      border-radius: 12px;
+      padding: var(--space-2);
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: #E2E8F0;
+      white-space: pre-line;
+      position: relative;
+      font-family: var(--font-main);
+    }
+
+    .hashtags {
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: var(--color-brand-light-blue);
+      word-break: break-all;
+    }
+
+    /* ==========================================================================
+       EDITORIAL / MANIFESTO CALLOUT
+       ========================================================================== */
+    .manifesto-callout {
+      background: linear-gradient(135deg, rgba(6, 132, 242, 0.18) 0%, rgba(3, 217, 217, 0.12) 100%);
+      border: 1px solid rgba(3, 217, 217, 0.35);
+      border-radius: 20px;
+      padding: var(--space-4);
+      margin: var(--space-4) 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .manifesto-quote {
+      font-family: var(--font-editorial);
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-style: italic;
+      color: #FFFFFF;
+      line-height: 1.45;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .manifesto-author {
+      font-family: var(--font-main);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-brand-turquoise);
+      margin-top: var(--space-2);
+      display: block;
+    }
+
+    /* ==========================================================================
+       TOAST NOTIFICATION (COPY FEEDBACK)
+       ========================================================================== */
+    #copy-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--color-brand-turquoise);
+      color: var(--color-bg-dark);
+      font-family: var(--font-main);
+      font-weight: 800;
+      font-size: 0.8125rem;
+      padding: 12px 20px;
+      border-radius: 9999px;
+      box-shadow: 0 10px 30px rgba(3, 217, 217, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(15px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #copy-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       PRINT STYLES FOR EXPORT TO PDF
+       ========================================================================== */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #101828 !important;
+      }
+
+      .cosmic-bg, .cosmic-grid, .ambient-glow, .tab-nav-wrapper, .header-actions, .btn-copy, #copy-toast {
+        display: none !important;
+      }
+
+      .tab-content {
+        display: block !important;
+        page-break-after: always;
+      }
+
+      .glass-panel, .post-card, .copy-box, .color-swatch-card {
+        background: #FFFFFF !important;
+        color: #101828 !important;
+        border: 1px solid #CBD5E1 !important;
+        box-shadow: none !important;
+      }
+
+      .section-title, .hero-title, .card-title, .post-title-text {
+        color: #071B33 !important;
+      }
+
+      .hero-title .gradient-text {
+        -webkit-text-fill-color: #071B33 !important;
+      }
+
+      .copy-box {
+        background: #F8FAFC !important;
+        color: #334155 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Cosmic Graphics -->
+  <div class="cosmic-bg" aria-hidden="true"></div>
+  <div class="cosmic-grid" aria-hidden="true"></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Main Document Container -->
+  <div class="app-container">
+
+    <!-- TOP HEADER -->
+    <header class="site-header">
+      <div class="brand-id">
+        <!-- SVG Astronaut Icon -->
+        <div class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+          </svg>
+        </div>
+        <div class="brand-title-group">
+          <h1>Abduzido Studio</h1>
+          <span>Dossiê & Briefing Estratégico</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-outline" onclick="window.print()" title="Imprimir ou Salvar em PDF">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          Exportar PDF
+        </button>
+        <button class="btn btn-primary" onclick="copyFullBriefing()" title="Copiar resumo textual para a área de transferência">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Copiar Dossiê
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO PRESENTATION BANNER -->
+    <section class="glass-panel hero-banner">
+      <div class="hero-eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        Direção Visual: Orbital Clean 2026
+      </div>
+      <h2 class="hero-title">
+        Sua marca fora da <br/>
+        <span class="gradient-text">órbita do comum.</span>
+      </h2>
+      <p class="hero-desc">
+        Guia completo de identidade, síntese de posicionamento e kit prático de campanhas para <strong>Instagram</strong> e <strong>Google Meu Negócio</strong>. Feito sob medida para transformar a presença digital de marcas que recusam o amadorismo e buscam conversão de alto impacto.
+      </p>
+
+      <div class="hero-badges-row">
+        <div class="hero-pill"><span class="dot"></span> Stack Oficial: Next.js & Tailwind CSS</div>
+        <div class="hero-pill"><span class="dot"></span> Alta Conversão & Velocidade Máxima</div>
+        <div class="hero-pill"><span class="dot"></span> Design 100% Autoral (Sem Templates Lentos)</div>
+        <div class="hero-pill"><span class="dot"></span> Foco: Landing Pages, Sites & Blogs</div>
+      </div>
+    </section>
+
+    <!-- STICKY INTERACTIVE TAB NAVIGATION -->
+    <nav class="tab-nav-wrapper" aria-label="Navegação de seções do briefing">
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('tab-visao', this)">
+          🪐 Visão & DNA
+        </button>
+        <button class="tab-btn" onclick="switchTab('tab-identidade', this)">
+          🎨 Identidade Visual
+        </button>
+        <button class="tab-btn" onclick="switchTab('tab-servicos', this)">
+          🚀 Serviços & Stack
+        </button>
+        <button class="tab-btn" onclick="switchTab('tab-instagram', this)">
+          📱 Campanha Instagram
+        </button>
+        <button class="tab-btn" onclick="switchTab('tab-google', this)">
+          📍 Google Meu Negócio
+        </button>
+        <button class="tab-btn" onclick="switchTab('tab-whatsapp', this)">
+          💬 Scripts WhatsApp
+        </button>
+      </div>
+    </nav>
+
+    <!-- ==========================================================================
+         TAB 1: VISÃO & DNA DA MARCA
+         ========================================================================== -->
+    <section id="tab-visao" class="tab-content active">
+      <div class="section-header">
+        <span class="section-eyebrow">Pilar Fundamental</span>
+        <h3 class="section-title">Visão, Missão & Posicionamento</h3>
+        <p class="section-subtitle">O alicerce conceitual que diferencia o Abduzido Studio de qualquer agência tradicional.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="glass-panel card">
+          <div class="card-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-turquoise)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+            Proposta Única de Valor (PUV)
+          </div>
+          <p class="card-text">
+            O <strong>Abduzido Studio</strong> elimina a barreira da comunicação genérica, lenta e improvisada. Construímos sites institucionais, landing pages e aplicações web ultra-velozes (Next.js + Tailwind), unindo direção de arte sofisticada com código moderno de alta performance que converte cliques em clientes reais.
+          </p>
+        </div>
+
+        <div class="glass-panel card">
+          <div class="card-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-blue)" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            Público-Alvo Prioritário
+          </div>
+          <p class="card-text">
+            • <strong>Pequenas e médias empresas</strong> com sites antigos ou pesados que perdem vendas.<br/>
+            • <strong>Startups e negócios digitais</strong> precisando validar e escalar produtos com páginas de alta conversão.<br/>
+            • <strong>Profissionais liberais</strong> (médicos, advogados, consultores, engenheiros) que exigem autoridade e estética premium.
+          </p>
+        </div>
+      </div>
+
+      <!-- Manifesto Block -->
+      <div class="manifesto-callout">
+        <p class="manifesto-quote">
+          “A internet está saturada de sites esquecíveis, lentos e templates pré-fabricados. Nós acreditamos em projetos com intenção, beleza, código limpo e direção estratégica. Cada marca tem uma órbita própria. Nosso trabalho é colocar a sua em destaque estelar.”
+        </p>
+        <span class="manifesto-author">— Manifesto Abduzido Studio</span>
+      </div>
+
+      <div class="grid-3">
+        <div class="glass-panel card">
+          <span class="tag tag-blue" style="margin-bottom: 8px;">Diferencial #1</span>
+          <h4 class="card-title" style="font-size: 1rem;">Código Moderno vs. WordPress</h4>
+          <p class="card-text">Sem temas inflados, sem plugins que quebram a cada update. Usamos Next.js e Tailwind CSS para atingir nota máxima (90-100) no Google PageSpeed.</p>
+        </div>
+        <div class="glass-panel card">
+          <span class="tag tag-turquoise" style="margin-bottom: 8px;">Diferencial #2</span>
+          <h4 class="card-title" style="font-size: 1rem;">Design 100% Autoral</h4>
+          <p class="card-text">Cada tipografia, espaçamento e interação são desenhados para a identidade única do cliente. Nenhuma página parece um clone da concorrência.</p>
+        </div>
+        <div class="glass-panel card">
+          <span class="tag tag-yellow" style="margin-bottom: 8px;">Diferencial #3</span>
+          <h4 class="card-title" style="font-size: 1rem;">Atendimento Direto com o Especialista</h4>
+          <p class="card-text">Sem intermediários ou atendentes engessados. O cliente fala diretamente com quem planeja, desenha e desenvolve a solução.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         TAB 2: IDENTIDADE VISUAL & DESIGN SYSTEM
+         ========================================================================== -->
+    <section id="tab-identidade" class="tab-content">
+      <div class="section-header">
+        <span class="section-eyebrow">Design System Pocket</span>
+        <h3 class="section-title">Manual de Identidade Visual</h3>
+        <p class="section-subtitle">Cores oficiais, tipografia e diretrizes de aplicação. Clique em qualquer cor para copiar o HEX!</p>
+      </div>
+
+      <!-- Color Swatches Grid -->
+      <div class="grid-4">
+        <!-- Cor 1: Azul Principal -->
+        <div class="color-swatch-card" onclick="copyText('#0684F2', 'Azul Principal (#0684F2) copiado!')">
+          <div class="color-sample" style="background: #0684F2;"></div>
+          <div class="color-details">
+            <div class="color-name">Azul Principal</div>
+            <div class="color-hex">#0684F2 <span>Copiar</span></div>
+            <div class="color-use">Botões de ação primária, links mestres, logos e ícones de tecnologia.</div>
+          </div>
+        </div>
+
+        <!-- Cor 2: Turquesa Energético -->
+        <div class="color-swatch-card" onclick="copyText('#03D9D9', 'Turquesa Energético (#03D9D9) copiado!')">
+          <div class="color-sample" style="background: #03D9D9;"></div>
+          <div class="color-details">
+            <div class="color-name">Turquesa Energético</div>
+            <div class="color-hex">#03D9D9 <span>Copiar</span></div>
+            <div class="color-use">Brilhos cósmicos, detalhes interativos, hover states e pontos de conversão.</div>
+          </div>
+        </div>
+
+        <!-- Cor 3: Azul Espacial Escuro -->
+        <div class="color-swatch-card" onclick="copyText('#071B33', 'Azul Espacial (#071B33) copiado!')">
+          <div class="color-sample" style="background: #071B33;"></div>
+          <div class="color-details">
+            <div class="color-name">Azul Espacial Noturno</div>
+            <div class="color-hex">#071B33 <span>Copiar</span></div>
+            <div class="color-use">Fundo de seções de alto impacto, CTA final, base de contraste e banners.</div>
+          </div>
+        </div>
+
+        <!-- Cor 4: Azul Profundo Base -->
+        <div class="color-swatch-card" onclick="copyText('#0B2545', 'Azul Profundo (#0B2545) copiado!')">
+          <div class="color-sample" style="background: #0B2545;"></div>
+          <div class="color-details">
+            <div class="color-name">Azul Profundo Base</div>
+            <div class="color-hex">#0B2545 <span>Copiar</span></div>
+            <div class="color-use">Rodapés, cartões de vidro escuros e gradientes astronômicos.</div>
+          </div>
+        </div>
+
+        <!-- Cor 5: Fundo Orbital Claro -->
+        <div class="color-swatch-card" onclick="copyText('#EAF8FF', 'Fundo Orbital (#EAF8FF) copiado!')">
+          <div class="color-sample" style="background: #EAF8FF; border-bottom: 1px solid #CBD5E1;"></div>
+          <div class="color-details">
+            <div class="color-name">Fundo Orbital Claro</div>
+            <div class="color-hex">#EAF8FF <span>Copiar</span></div>
+            <div class="color-use">Seções luminosas, hero diurno e áreas de respiro da leitura.</div>
+          </div>
+        </div>
+
+        <!-- Cor 6: Azul Céu Luminoso -->
+        <div class="color-swatch-card" onclick="copyText('#70B3FF', 'Azul Céu (#70B3FF) copiado!')">
+          <div class="color-sample" style="background: #70B3FF;"></div>
+          <div class="color-details">
+            <div class="color-name">Azul Céu Luminoso</div>
+            <div class="color-hex">#70B3FF <span>Copiar</span></div>
+            <div class="color-use">Bordas translúcidas de cards, sublinhados e ilustrações vetoriais.</div>
+          </div>
+        </div>
+
+        <!-- Cor 7: Amarelo Estelar -->
+        <div class="color-swatch-card" onclick="copyText('#FFCC70', 'Amarelo Estelar (#FFCC70) copiado!')">
+          <div class="color-sample" style="background: #FFCC70;"></div>
+          <div class="color-details">
+            <div class="color-name">Amarelo Estelar</div>
+            <div class="color-hex">#FFCC70 <span>Copiar</span></div>
+            <div class="color-use">Selos de garantia, estrelas de avaliação (Google Reviews) e detalhes premium.</div>
+          </div>
+        </div>
+
+        <!-- Cor 8: Texto Escuro Carbono -->
+        <div class="color-swatch-card" onclick="copyText('#101828', 'Texto Carbono (#101828) copiado!')">
+          <div class="color-sample" style="background: #101828;"></div>
+          <div class="color-details">
+            <div class="color-name">Texto Carbono Escuro</div>
+            <div class="color-hex">#101828 <span>Copiar</span></div>
+            <div class="color-use">Títulos principais e parágrafos em fundos claros para máxima legibilidade.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typography & Tone of Voice -->
+      <div class="grid-2">
+        <div class="glass-panel card">
+          <h4 class="card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-turquoise)" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+            Hierarquia Tipográfica
+          </h4>
+          <div style="margin-top: 12px; space-y: 10px;">
+            <div style="padding-bottom: 12px; border-bottom: 1px solid rgba(112, 179, 255, 0.15);">
+              <span style="font-size: 0.75rem; color: var(--color-brand-turquoise); font-weight: 800; text-transform: uppercase;">Fonte Primária (Interface & Headings)</span>
+              <p style="font-family: var(--font-main); font-weight: 800; font-size: 1.125rem; color: #fff;">Montserrat (400, 600, 700, 800, 900)</p>
+              <span style="font-size: 0.8125rem; color: var(--color-text-light-sec);">Usada em títulos, botões, cards, menus e navegação técnica. Transmite precisão e modernidade.</span>
+            </div>
+            <div style="padding-top: 12px;">
+              <span style="font-size: 0.75rem; color: var(--color-brand-yellow); font-weight: 800; text-transform: uppercase;">Fonte de Destaque Editorial</span>
+              <p style="font-family: var(--font-editorial); font-style: italic; font-size: 1.25rem; color: #fff;">Alegreya (Italic & Regular)</p>
+              <span style="font-size: 0.8125rem; color: var(--color-text-light-sec);">Usada em citações, manifestos, depoimentos e títulos poéticos. Acrescenta humanidade e refinamento.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel card">
+          <h4 class="card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-blue)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Tom de Voz & Personalidade
+          </h4>
+          <ul style="list-style: none; margin-top: 10px; font-size: 0.875rem; color: var(--color-text-light-sec); line-height: 1.8;">
+            <li>✨ <strong>Espacial & Criativo:</strong> Usa metáforas como "decolagem", "órbita", "missão", mas sempre ancoradas em resultado comercial real.</li>
+            <li>⚡ <strong>Técnico sem Ser Chato:</strong> Fala de velocidade, SEO e Next.js em linguagem clara, mostrando o benefício para o faturamento.</li>
+            <li>🚫 <strong>O Que Evitar:</strong> Jargões corporativos frios ("sinergia holística", "entregáveis 360") e infantilização (o astronauta é sofisticado, não infantil).</li>
+            <li>🎯 <strong>Assinatura Verbal:</strong> <em>"Sua marca fora da órbita do comum."</em></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         TAB 3: CATÁLOGO DE SERVIÇOS & STACK
+         ========================================================================== -->
+    <section id="tab-servicos" class="tab-content">
+      <div class="section-header">
+        <span class="section-eyebrow">Soluções Principais</span>
+        <h3 class="section-title">Serviços Chave & Arquitetura Técnica</h3>
+        <p class="section-subtitle">Os 4 produtos que devem guiar a oferta nas campanhas patrocinadas e no contato comercial.</p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Serviço 1 -->
+        <div class="glass-panel card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <span class="tag tag-turquoise">Alta Conversão</span>
+            <span style="font-size: 0.75rem; color: var(--color-brand-turquoise); font-weight: 800;">01</span>
+          </div>
+          <h4 class="card-title">Landing Pages de Alta Conversão</h4>
+          <p class="card-text">
+            Páginas desenhadas cirurgicamente para tráfego pago (Meta Ads, Google Ads) e lançamentos. Estruturadas com copywriting persuasivo, carregamento instantâneo, gatilhos de prova social e integração direta com WhatsApp e CRM.
+          </p>
+          <div style="margin-top: 12px; font-size: 0.75rem; color: var(--color-brand-light-blue); font-weight: 700;">
+            Ideal para: Lançamentos de infoprodutos, clínicas, escritórios e serviços locais.
+          </div>
+        </div>
+
+        <!-- Serviço 2 -->
+        <div class="glass-panel card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <span class="tag tag-blue">Autoridade Corporativa</span>
+            <span style="font-size: 0.75rem; color: var(--color-brand-blue); font-weight: 800;">02</span>
+          </div>
+          <h4 class="card-title">Sites Institucionais Estratégicos</h4>
+          <p class="card-text">
+            A vitrine digital definitiva para empresas consolidadas e startups. Apresenta história, portfólio, catálogo de serviços e equipe com acabamento de grife, gerando confiança imediata no primeiro segundo de acesso.
+          </p>
+          <div style="margin-top: 12px; font-size: 0.75rem; color: var(--color-brand-light-blue); font-weight: 700;">
+            Ideal para: Construtoras, consultorias, indústrias, escritórios contábeis e jurídicos.
+          </div>
+        </div>
+
+        <!-- Serviço 3 -->
+        <div class="glass-panel card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <span class="tag tag-yellow">Tráfego Orgânico</span>
+            <span style="font-size: 0.75rem; color: var(--color-brand-yellow); font-weight: 800;">03</span>
+          </div>
+          <h4 class="card-title">Blogs Otimizados para SEO</h4>
+          <p class="card-text">
+            Portais de conteúdo arquitetados para alcançar as primeiras posições do Google organicamente. Renderização estática veloz, marcação semântica JSON-LD e painel intuitivo para publicação ágil de artigos.
+          </p>
+          <div style="margin-top: 12px; font-size: 0.75rem; color: var(--color-brand-light-blue); font-weight: 700;">
+            Ideal for: Especialistas de conteúdo, portais de nicho e estratégias de inbound marketing.
+          </div>
+        </div>
+
+        <!-- Serviço 4 -->
+        <div class="glass-panel card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+            <span class="tag tag-turquoise">Sustentação Contínua</span>
+            <span style="font-size: 0.75rem; color: var(--color-brand-turquoise); font-weight: 800;">04</span>
+          </div>
+          <h4 class="card-title">Manutenção & Suporte Web Mensal</h4>
+          <p class="card-text">
+            Tranquilidade total para o empresário focar nas vendas. Cuidamos de backups, melhorias constantes de UX, otimização de velocidade, segurança SSL, atualizações de texto e integração contínua.
+          </p>
+          <div style="margin-top: 12px; font-size: 0.75rem; color: var(--color-brand-light-blue); font-weight: 700;">
+            Ideal para: Negócios que já possuem site mas sofrem com instabilidade ou falta de suporte.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         TAB 4: KIT DE CAMPANHA — INSTAGRAM
+         ========================================================================== -->
+    <section id="tab-instagram" class="tab-content">
+      <div class="section-header">
+        <span class="section-eyebrow">Redes Sociais</span>
+        <h3 class="section-title">Kit de Lançamento no Instagram</h3>
+        <p class="section-subtitle">Bio otimizada e 4 posts completos prontos para publicação, com copy, gancho visual e hashtags.</p>
+      </div>
+
+      <!-- Bio do Instagram -->
+      <div class="glass-panel card" style="margin-bottom: var(--space-4);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h4 class="card-title" style="margin-bottom: 0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand-turquoise)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            Bio Otimizada para o Perfil
+          </h4>
+          <button class="btn btn-copy" onclick="copyElementText('ig-bio-text', 'Bio do Instagram copiada!')">Copiar Bio</button>
+        </div>
+        <div class="copy-box" id="ig-bio-text">Abduzido Studio | Sites & Landing Pages 🚀
+Sua marca fora da órbita do comum.
+⚡ Landing Pages de alta conversão & sites ultra-rápidos
+🛠️ Desenvolvidos com tecnologia moderna (Next.js + Tailwind)
+📈 Menos cliques perdidos, mais clientes no WhatsApp
+👇 Decole seu projeto digital hoje:
+[LINK DO WHATSAPP / SITE]</div>
+      </div>
+
+      <!-- Posts Prontos -->
+      <h4 style="font-size: 1.25rem; font-weight: 800; color: #FFFFFF; margin-bottom: var(--space-2);">4 Posts Completos Prontos para Publicar</h4>
+
+      <!-- Post 1 -->
+      <div class="post-card">
+        <div class="post-card-header">
+          <div class="post-meta">
+            <span class="tag tag-turquoise">Post 01 • Carrossel Quebra de Objeção</span>
+          </div>
+          <button class="btn btn-copy" onclick="copyElementText('ig-post-1', 'Post 1 copiado!')">Copiar Post Completo</button>
+        </div>
+        <div class="post-title-text">Por que 53% dos seus clientes desistem antes mesmo do seu site abrir?</div>
+        
+        <div class="creative-suggestion">
+          <strong>Sugestão Visual do Carrossel (5 Telas):</strong><br/>
+          • Slide 1: Fundo espacial escuro, astronauta flutuando com um cronômetro na mão e o texto: "3 segundos. É todo o tempo que você tem."<br/>
+          • Slide 2: O dado do Google: sites que demoram mais de 3s para carregar perdem metade do tráfego.<br/>
+          • Slide 3: O erro clássico: temas pesados do WordPress com 40 plugins instalados.<br/>
+          • Slide 4: A solução: sites construídos sob medida com Next.js e código limpo.<br/>
+          • Slide 5: Chamada para decolar no link da bio.
+        </div>
+
+        <div class="copy-box" id="ig-post-1">Você investe em anúncios, posta todos os dias, gera interesse… mas quando o cliente clica no link, a tela fica em branco carregando por 5, 7 ou 10 segundos.
+
+Sabe o que acontece? Ele fecha a aba e vai comprar do seu concorrente. 📉
+
+O Google comprovou que cada segundo extra de carregamento destrói a sua taxa de conversão. Não adianta ter a melhor oferta do mundo se o seu site parece que foi construído em 2012 com dezenas de plugins pesados.
+
+No @abduzidostudio, criamos landing pages e sites com Next.js e Tailwind CSS — a mesma stack de tecnologia usada pelas maiores empresas do mundo. O resultado? Carregamento instantâneo, visual sofisticado e o cliente direto no seu WhatsApp.
+
+Tire sua presença digital da lentidão. Mande uma DM ou clique no link da bio para fazer um diagnóstico gratuito do seu site atual! 🚀
+
+#criacaodesites #landingpage #desenvolvimentoweb #nextjs #webdesign #trafegopago #marketingdigital #abduzidostudio #conversao</div>
+      </div>
+
+      <!-- Post 2 -->
+      <div class="post-card">
+        <div class="post-card-header">
+          <div class="post-meta">
+            <span class="tag tag-blue">Post 02 • Autoridade & Bastidores</span>
+          </div>
+          <button class="btn btn-copy" onclick="copyElementText('ig-post-2', 'Post 2 copiado!')">Copiar Post Completo</button>
+        </div>
+        <div class="post-title-text">A anatomia de uma Landing Page que realmente vende</div>
+        
+        <div class="creative-suggestion">
+          <strong>Sugestão Visual (Infográfico Estático ou Vídeo):</strong><br/>
+          Print estilizado de uma seção de landing page com setas apontando para: 1. Headline clara; 2. Botão CTA em destaque sem distrações; 3. Prova social verificada; 4. Velocidade de carregamento de 98/100.
+        </div>
+
+        <div class="copy-box" id="ig-post-2">Uma landing page de alta conversão não é só "bonitinha". Ela é uma máquina de vendas com engenharia milimétrica. 📐
+
+Aqui no Abduzido Studio, cada projeto segue 4 regras inegociáveis:
+
+1️⃣ Proposta de Valor em 5 Segundos: O visitante precisa entender o que você faz e por que deve confiar em você antes da primeira rolagem.
+2️⃣ Zero Distrações: Menos menus confusos, mais foco no botão de ação principal (CTA).
+3️⃣ Velocidade de Foguete: Construída em código puro e otimizado, sem carregar lixo que trava no celular 4G do cliente.
+4️⃣ Prova Social Irrefutável: Avaliações reais e selos que acabam com qualquer dúvida do comprador.
+
+Sua página atual tem essa estrutura ou parece um labirinto? 
+
+Descubra como colocar sua marca fora da órbita do comum. Fale conosco pelo link da bio! ✨
+
+#landingpages #copywriting #designestrategico #autoridadedigital #abduzido #sitesinstitucionais #frontend</div>
+      </div>
+
+      <!-- Post 3 -->
+      <div class="post-card">
+        <div class="post-card-header">
+          <div class="post-meta">
+            <span class="tag tag-yellow">Post 03 • Oferta Direta & Urgência</span>
+          </div>
+          <button class="btn btn-copy" onclick="copyElementText('ig-post-3', 'Post 3 copiado!')">Copiar Post Completo</button>
+        </div>
+        <div class="post-title-text">Sua empresa passa a confiança de um líder ou o improviso de um amador?</div>
+        
+        <div class="creative-suggestion">
+          <strong>Sugestão Visual (Comparativo Lado a Lado):</strong><br/>
+          Lado esquerdo (borrado/sem graça): "Site lento, sem SSL, desconfigurado no celular".<br/>
+          Lado direito (iluminado com brilho azul/turquesa): "Site Abduzido Studio: Elegante, 100% responsivo, carregando em milissegundos".
+        </div>
+
+        <div class="copy-box" id="ig-post-3">A primeira impressão do seu cliente muitas vezes não acontece na sua loja física ou no seu escritório. Acontece no navegador do celular dele.
+
+Quando alguém pesquisa pelo seu serviço e encontra um site quebrado, desconfigurado na tela do smartphone ou que parece abandonado, o julgamento é automático: "Será que esse negócio é sério?"
+
+Ter um site profissional não é luxo. É o ativo mais barato e duradouro para gerar credibilidade e fechar contratos de maior valor.
+
+No Abduzido Studio, desenhamos a presença digital sob medida para o seu negócio se posicionar como autoridade inquestionável no seu segmento.
+
+Quer saber como decolar o seu projeto ainda este mês? Clique no link da bio e solicite um orçamento direto pelo WhatsApp! 🛸
+
+#marketingdigitalbrasil #posicionamentodemarca #webdesigner #sitesprofissionais #empreendedorismo #agenciadigital</div>
+      </div>
+
+      <!-- Post 4 -->
+      <div class="post-card">
+        <div class="post-card-header">
+          <div class="post-meta">
+            <span class="tag tag-turquoise">Post 04 • Institucional & Propósito</span>
+          </div>
+          <button class="btn btn-copy" onclick="copyElementText('ig-post-4', 'Post 4 copiado!')">Copiar Post Completo</button>
+        </div>
+        <div class="post-title-text">Apresentando o Abduzido Studio: Bem-vindo à nova era da sua marca</div>
+        
+        <div class="creative-suggestion">
+          <strong>Sugestão Visual (Banner da Marca com Mascote):</strong><br/>
+          O astronauta mascote centralizado em 3D, cercado por órbitas luminosas em turquesa e a tipografia de grife: "ABDUZIDO STUDIO — Design Estratégico & Desenvolvimento Web".
+        </div>
+
+        <div class="copy-box" id="ig-post-4">Por que "Abduzido"? 👽
+
+Porque o nosso propósito é arrancar a sua marca da órbita do comum, da mesmice e da mediocridade visual que domina a internet.
+
+Nós unimos duas coisas que raramente andam juntas no mercado:
+🎨 Design autoral com personalidade e estética impecável;
+💻 Engenharia web de ponta com Next.js, SEO de alta performance e código limpo.
+
+Aqui você não recebe uma "fórmula pronta" ou um template requentado. Cada cliente é uma missão espacial única planejada do diagnóstico ao lançamento.
+
+Seja para uma Landing Page de alta conversão, um Site Institucional robusto ou suporte técnico contínuo, a nossa tripulação está pronta para acelerar seus resultados.
+
+Siga nosso perfil e acompanhe bastidores, dicas de conversão e novidades digitais! 🪐
+
+#abduzidostudio #novamarca #lancamento #designgrafico #tecnologia #sitesmodernos #transformacaodigital</div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         TAB 5: GOOGLE MEU NEGÓCIO (GOOGLE BUSINESS PROFILE)
+         ========================================================================== -->
+    <section id="tab-google" class="tab-content">
+      <div class="section-header">
+        <span class="section-eyebrow">SEO Local & Presença no Google</span>
+        <h3 class="section-title">Otimização do Google Meu Negócio</h3>
+        <p class="section-subtitle">Textos otimizados para aparecer nas buscas de clientes com alta intenção de contratação.</p>
+      </div>
+
+      <!-- Ficha Técnica GMB -->
+      <div class="grid-2">
+        <div class="glass-panel card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h4 class="card-title" style="margin-bottom: 0;">Título & Categorias Oficiais</h4>
+            <button class="btn btn-copy" onclick="copyText('Abduzido Studio — Criação de Sites, Landing Pages e Desenvolvimento Web', 'Título do Google copiado!')">Copiar Título</button>
+          </div>
+          <div style="font-size: 0.875rem; color: #E2E8F0; line-height: 1.7;">
+            <strong>Nome Comercial Recomendado:</strong><br/>
+            <span style="color: var(--color-brand-turquoise); font-weight: 700;">Abduzido Studio — Criação de Sites, Landing Pages e Desenvolvimento Web</span><br/><br/>
+            <strong>Categoria Primária:</strong> Empresa de web design<br/>
+            <strong>Categorias Secundárias:</strong><br/>
+            • Desenvolvedor de software / sites<br/>
+            • Agência de marketing na Internet<br/>
+            • Designer gráfico / Consultor de tecnologia
+          </div>
+        </div>
+
+        <div class="glass-panel card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h4 class="card-title" style="margin-bottom: 0;">Palavras-Chave de Alta Intenção</h4>
+            <button class="btn btn-copy" onclick="copyElementText('gmb-keywords', 'Palavras-chave copiadas!')">Copiar Tags</button>
+          </div>
+          <div id="gmb-keywords" style="font-size: 0.8125rem; color: var(--color-text-light-sec); line-height: 1.6;">
+            criação de landing page, desenvolvimento de sites institucionais, web designer profissional, site rápido Next.js, criador de sites para empresas, agência de criação de site, redesign de sites antigos, manutenção de sites, consultoria SEO local, site para tráfego pago.
+          </div>
+        </div>
+      </div>
+
+      <!-- Descrição Completa para a Ficha do Google -->
+      <div class="glass-panel card" style="margin-bottom: var(--space-4);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h4 class="card-title" style="margin-bottom: 0;">
+            Descrição Completa da Empresa (Pronta para colar na Ficha do Google — 750 caracteres)
+          </h4>
+          <button class="btn btn-copy" onclick="copyElementText('gmb-desc-text', 'Descrição GMB copiada!')">Copiar Descrição</button>
+        </div>
+        <div class="copy-box" id="gmb-desc-text">O Abduzido Studio é especialista em desenvolvimento web moderno, design estratégico e criação de landing pages de alta conversão. Nossa missão é tirar sua marca fora da órbita do comum com sites que carregam em milissegundos, ranqueiam no Google e transformam visitantes em clientes no WhatsApp.
+
+Desenvolvemos com tecnologia de ponta (Next.js e Tailwind CSS), garantindo performance extrema sem temas pesados do WordPress. 
+
+Nossos serviços incluem:
+• Landing Pages para Campanhas e Tráfego Pago
+• Sites Institucionais e Corporativos
+• Blogs Otimizados para SEO
+• Manutenção e Otimização de Performance Web
+
+Atendemos empresas, profissionais liberais e startups em todo o Brasil. Fale com nossa tripulação e decole seu projeto digital!</div>
+      </div>
+
+      <!-- 2 Posts de Atualização para o Google Meu Negócio -->
+      <h4 style="font-size: 1.125rem; font-weight: 800; color: #FFFFFF; margin-bottom: var(--space-2);">Posts de Atualização / Oferta para a Ficha do Google</h4>
+
+      <div class="grid-2">
+        <div class="post-card" style="margin-bottom: 0;">
+          <div class="post-card-header">
+            <span class="tag tag-turquoise">Post de Oferta • Google</span>
+            <button class="btn btn-copy" onclick="copyElementText('gmb-post-1', 'Post 1 do Google copiado!')">Copiar</button>
+          </div>
+          <div class="copy-box" id="gmb-post-1">🚀 Seu site atual está ajudando a fechar negócios ou afastando clientes?
+
+No Abduzido Studio, criamos Landing Pages e Sites Institucionais desenvolvidos sob medida para velocidade máxima e conversão imediata. 
+
+✅ Carregamento em menos de 2 segundos
+✅ 100% adaptado para celulares
+✅ Integração direta com seu WhatsApp
+✅ Otimizado para aparecer nas buscas do Google
+
+Clique no botão "Saiba Mais" e solicite uma avaliação gratuita da sua presença digital!</div>
+        </div>
+
+        <div class="post-card" style="margin-bottom: 0;">
+          <div class="post-card-header">
+            <span class="tag tag-blue">Post de Novidade • Google</span>
+            <button class="btn btn-copy" onclick="copyElementText('gmb-post-2', 'Post 2 do Google copiado!')">Copiar</button>
+          </div>
+          <div class="copy-box" id="gmb-post-2">⚡ Por que migrar para Next.js e deixar os sites lentos no passado?
+
+Sites construídos em plataformas antigas acumulam plugins desnecessários que travam a navegação no celular do seu cliente. 
+
+O Abduzido Studio utiliza a mesma stack de tecnologia das maiores empresas do mundo para entregar páginas ultra-leves que não quebram e convertem muito mais. 
+
+Entre em contato pelo WhatsApp e descubra como modernizar seu site!</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         TAB 6: SCRIPTS DE ATENDIMENTO WHATSAPP
+         ========================================================================== -->
+    <section id="tab-whatsapp" class="tab-content">
+      <div class="section-header">
+        <span class="section-eyebrow">Conversão Comercial</span>
+        <h3 class="section-title">Scripts Rápidos de Fechamento WhatsApp</h3>
+        <p class="section-subtitle">Mensagens prontas para responder os leads que chegarem através das campanhas do Instagram ou do Google.</p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Script 1: Lead do Instagram -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="tag tag-turquoise">Origem: Instagram / DM</span>
+            <button class="btn btn-copy" onclick="copyElementText('wpp-script-1', 'Script 1 copiado!')">Copiar Script</button>
+          </div>
+          <div class="post-title-text">Boas-Vindas ao Lead do Instagram</div>
+          <div class="copy-box" id="wpp-script-1">Olá! Seja muito bem-vindo ao Abduzido Studio! 🚀
+
+Que bom receber seu contato pelo Instagram. Meu nome é Raphael e vou te ajudar a colocar o seu projeto digital na órbita certa.
+
+Para eu entender exatamente como te ajudar melhor: você precisa de uma **Landing Page de alta conversão**, um **Site Institucional** para a sua empresa ou quer reformular um site que já existe?</div>
+        </div>
+
+        <!-- Script 2: Lead do Google -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="tag tag-blue">Origem: Google Meu Negócio</span>
+            <button class="btn btn-copy" onclick="copyElementText('wpp-script-2', 'Script 2 copiado!')">Copiar Script</button>
+          </div>
+          <div class="post-title-text">Boas-Vindas ao Lead do Google</div>
+          <div class="copy-box" id="wpp-script-2">Olá! Obrigado por entrar em contato com o Abduzido Studio através do Google! 🛸
+
+Aqui nós criamos sites sob medida, focados em velocidade estelar e resultados comerciais reais para o seu negócio.
+
+Me conta um pouquinho sobre o seu negócio e qual o objetivo principal que você quer alcançar com esse novo site?</div>
+        </div>
+
+        <!-- Script 3: Diagnóstico Rápido -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="tag tag-yellow">Qualificação • Diagnóstico em 3 Perguntas</span>
+            <button class="btn btn-copy" onclick="copyElementText('wpp-script-3', 'Script 3 copiado!')">Copiar Script</button>
+          </div>
+          <div class="post-title-text">Perguntas Chave para Elaborar a Proposta</div>
+          <div class="copy-box" id="wpp-script-3">Perfeito! Para eu montar uma proposta sob medida com o melhor custo-benefício e prazo para você, só preciso de 3 informações rápidas:
+
+1. Você já tem domínio (ex: suaempresa.com.br) ou identidade visual pronta?
+2. Qual o prazo ideal que você gostaria de ter essa página no ar?
+3. O objetivo principal é receber contatos no WhatsApp, vender produtos ou capturar e-mails?</div>
+        </div>
+
+        <!-- Script 4: Fechamento & Proposta -->
+        <div class="post-card">
+          <div class="post-card-header">
+            <span class="tag tag-turquoise">Fechamento • Confiança & Próximo Passo</span>
+            <button class="btn btn-copy" onclick="copyElementText('wpp-script-4', 'Script 4 copiado!')">Copiar Script</button>
+          </div>
+          <div class="post-title-text">Encaminhamento da Proposta</div>
+          <div class="copy-box" id="wpp-script-4">Excelente! Com base no que conversamos, estruturei uma solução completa:
+
+Nós vamos desenvolver seu projeto com **Next.js e Tailwind CSS** — o que significa que o seu site vai carregar de forma instantânea em qualquer celular, sem travamentos e pronto para converter tráfego pago em clientes.
+
+O projeto inclui design exclusivo, responsividade total, integração do botão do WhatsApp e configuração técnica de SEO.
+
+Podemos marcar uma chamada rápida de 10 minutinhos para eu te mostrar a estrutura do layout ou prefere que eu já te mande o documento formal de proposta por aqui?</div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /app-container -->
+
+  <!-- Toast Notification Feedback -->
+  <div id="copy-toast">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="copy-toast-msg">Texto copiado para a área de transferência!</span>
+  </div>
+
+  <!-- Vanilla JS Interactive Engine -->
+  <script>
+    // Tab switching logic
+    function switchTab(tabId, buttonElement) {
+      // Hide all tabs
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      // Remove active class from buttons
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      // Activate target tab & button
+      const targetTab = document.getElementById(tabId);
+      if (targetTab) {
+        targetTab.classList.add('active');
+      }
+      if (buttonElement) {
+        buttonElement.classList.add('active');
+      }
+
+      // Smooth scroll back to top of tab container if scrolled past
+      const navWrapper = document.querySelector('.tab-nav-wrapper');
+      if (navWrapper && window.scrollY > navWrapper.offsetTop) {
+        navWrapper.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Toast notification display
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('copy-toast');
+      const toastMsg = document.getElementById('copy-toast-msg');
+      if (!toast || !toastMsg) return;
+
+      toastMsg.textContent = message || 'Copiado para a área de transferência!';
+      toast.classList.add('show');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // Direct text copier
+    function copyText(text, successMsg) {
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMsg || 'Copiado com sucesso!');
+      }).catch(err => {
+        console.error('Falha ao copiar:', err);
+      });
+    }
+
+    // Element text copier
+    function copyElementText(elementId, successMsg) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      const text = el.innerText || el.textContent;
+      copyText(text, successMsg || 'Texto copiado!');
+    }
+
+    // Full briefing textual summary
+    function copyFullBriefing() {
+      const fullText = `DOSSIÊ ESTRATÉGICO & BRIEFING DE CAMPANHA — ABDUZIDO STUDIO
+Conceito: Orbital Clean 2026 | Slogan: "Sua marca fora da órbita do comum."
+
+1. POSICIONAMENTO E DNA:
+O Abduzido Studio desenvolve sites institucionais, landing pages de alta conversão e blogs otimizados. Eliminamos a lentidão e o amadorismo através de código limpo com Next.js e Tailwind CSS.
+
+2. PALETA DE CORES OFICIAL:
+- Azul Principal: #0684F2 (CTAs, botões, destaques)
+- Turquesa Energético: #03D9D9 (Brilhos, hovers, micro-interações)
+- Azul Espacial Noturno: #071B33 (Fundo escuro, contraste)
+- Azul Profundo Base: #0B2545 (Footer, cartões translúcidos)
+- Fundo Orbital: #EAF8FF (Fundo luminoso)
+- Amarelo Estelar: #FFCC70 (Selos de garantia e avaliações)
+
+3. TIPOGRAFIA:
+- Primária: Montserrat (Display, botões, parágrafos)
+- Editorial: Alegreya (Citações poéticas e manifestos)
+
+4. SERVIÇOS EM FOCO:
+- Landing Pages de Alta Conversão (Tráfego Pago)
+- Sites Institucionais Estratégicos (Autoridade Corporativa)
+- Blogs Otimizados para SEO (Tráfego Orgânico)
+- Manutenção & Suporte Web Mensal
+
+5. CAMPANHA INSTAGRAM:
+Bio:
+Abduzido Studio | Sites & Landing Pages 🚀
+Sua marca fora da órbita do comum.
+⚡ Landing Pages de alta conversão & sites ultra-rápidos
+🛠️ Desenvolvidos com tecnologia moderna (Next.js + Tailwind)
+📈 Menos cliques perdidos, mais clientes no WhatsApp
+
+6. GOOGLE MEU NEGÓCIO:
+Nome: Abduzido Studio — Criação de Sites, Landing Pages e Desenvolvimento Web
+Categoria: Empresa de web design / Desenvolvedor de software
+Diferencial: Sites ultra-rápidos que carregam em menos de 2s e ranqueiam no topo.`;
+
+      copyText(fullText, 'Dossiê Estratégico completo copiado!');
+    }
+  </script>
+</body>
+</html>

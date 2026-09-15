@@ -1,5 +1,5 @@
 import React from 'react';
-import logoSvg from '../assets/logo.svg';
+import logoImg from '../assets/logo.png';
 
 interface LogoProps {
   variant?: 'header' | 'footer' | 'standalone';
@@ -34,10 +34,12 @@ export const Logo: React.FC<LogoProps> = ({
           }`}
         />
 
-        {/* Astronaut SVG Logo */}
+        {/* Astronaut Logo */}
         <img
-          src={logoSvg}
+          src={logoImg}
           alt="Abduzido Studio Logo"
+          width="40"
+          height="40"
           className={`w-full h-full object-contain relative z-10 transition-transform duration-300 ${
             animate ? 'group-hover:scale-110' : ''
           }`}
