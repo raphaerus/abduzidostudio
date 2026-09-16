@@ -307,6 +307,10 @@ export default function App() {
               <img 
                 src={astronautImg} 
                 alt="Mascote Astronauta Abduzido" 
+                width="420"
+                height="420"
+                fetchPriority="high"
+                decoding="async"
                 className="w-[280px] md:w-[420px] h-auto drop-shadow-[0_20px_50px_rgba(6,132,242,0.15)] object-contain"
               />
               {/* Blur behind astronaut to emphasize depth */}
