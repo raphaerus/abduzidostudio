@@ -238,14 +238,6 @@ export default function App() {
           
           {/* Left Column: Typography */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left z-20">
-            {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 mb-6 animate-pulse">
-              <Sparkles className="w-3.5 h-3.5 text-brand-blue" />
-              <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-brand-blue">
-                Orbital Clean Concept
-              </span>
-            </div>
-
             {/* Main Title */}
             <h1 className="text-fluid-hero leading-[1.1] font-black tracking-tight text-brand-text-dark mb-6">
               Sua marca fora da <br className="hidden md:inline"/>
